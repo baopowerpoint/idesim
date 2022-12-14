@@ -5,7 +5,7 @@ function CourseContent({ payload }) {
     <div className="mt-5">
       <div className="bg-dark3 border border-primary  mt-5 p-3 rounded-2xl text-primary text-headline5 font-700">
         Section {payload.sectionNumber}{" "}
-        <span className="text-headline6 text-med font-600">
+        <span className="text-headline6 text-primary font-600">
           {payload.sectionTitle}
         </span>
       </div>
