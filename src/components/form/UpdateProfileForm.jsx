@@ -24,7 +24,7 @@ function AddProductForm() {
       setThumbnailError("Vui lòng chọn đúng định dạng");
       return;
     }
-    if (!selected.size > 5000000) {
+    if (selected.size > 5000000) {
       setThumbnailError("Vui lòng chọn ảnh nhỏ hơn 5MB");
       return;
     }

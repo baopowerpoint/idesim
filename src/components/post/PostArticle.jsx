@@ -1,5 +1,4 @@
 import React from "react";
-
 import BadgeWithIcon from "../badge/BadgeWithIcon";
 
 function PostArticle({ payload }) {

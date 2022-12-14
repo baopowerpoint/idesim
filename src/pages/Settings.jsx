@@ -14,7 +14,7 @@ function Settings() {
           <div>
             <img
               className=" w-16 h-16 object-cover rounded-xl  "
-              src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+              src={user.photoURL}
               alt=""
             />
           </div>

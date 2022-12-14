@@ -5,6 +5,7 @@ import { MdOutlineMenuOpen } from "react-icons/md";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
 import CourseContent from "../components/course/CourseContent";
 import Discuss from "../components/Discuss";
+
 function LearningArea() {
   return (
     <div className="flex  justify-center">
