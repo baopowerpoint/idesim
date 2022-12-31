@@ -1,16 +1,14 @@
 import React from "react";
 import { BsFacebook } from "react-icons/bs";
 import { SiTiktok, SiZalo } from "react-icons/si";
-import {
-  AiFillInstagram,
-  AiOutlineGithub,
-  AiFillYoutube,
-} from "react-icons/ai";
+import { AiFillInstagram, AiFillYoutube } from "react-icons/ai";
 import Logo from "../imgs/logo.svg";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 function Footer() {
+  const { user } = useAuthContext();
   return (
-    <footer className="text-center h-screen w-full bg-dark2 mt-20 mx-auto text-light3">
+    <footer className="text-center  w-full bg-dark2 mt-20 mx-auto text-light3">
       <div className="container px-6 pt-6 mx-auto">
         <div className="flex justify-center gap-5 text-headline5 mb-6">
           <a
@@ -82,61 +80,55 @@ function Footer() {
           <p>iDesim rất vui vì được sự tin tưởng của bạn</p>
         </div>
 
-        {/* <div className="">
+        <div className="">
           <div className="mb-6">
             <h5 className="uppercase font-700 mb-2.5">Học tập</h5>
 
             <ul className="list-none mb-0">
               <li>
-                <a href="#!" className="text-white">
-                  Javascript
-                </a>
+                <Link to="/courses/design-principles">Nguyên tắc thiết kế</Link>
               </li>
               <li>
-                <a href="#!" className="text-white">
-                  Python
-                </a>
+                <Link to="/courses/design-principles">Powerpoint</Link>
               </li>
               <li>
-                <a href="#!" className="text-white">
-                  Html
-                </a>
+                <Link to="/courses/design-principles">Javascript</Link>
               </li>
               <li>
-                <a href="#!" className="text-white">
-                  Css
-                </a>
+                <Link to="/courses/design-principles">HTML & CSS</Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className="">
-          <div className="mb-6">
-            <h5 className="uppercase font-700 mb-2.5">Tài Khoản</h5>
+        {!user && (
+          <div className="">
+            <div className="mb-6">
+              <h5 className="uppercase font-700 mb-2.5">Tài Khoản</h5>
 
-            <ul className="list-none mb-0">
-              <li>
-                <a href="#!" className="text-white">
-                  Đăng nhập
-                </a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">
-                  Đăng ký
-                </a>
-              </li>
-            </ul>
+              <ul className="list-none mb-0">
+                <li>
+                  <Link to="" className="text-white">
+                    Đăng nhập
+                  </Link>
+                </li>
+                <li>
+                  <Link to="" className="text-white">
+                    Đăng ký
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
+        )}
         <div className="">
           <div className="mb-6">
             <h5 className="uppercase font-700 mb-2.5">Thảo luận</h5>
 
             <ul className="list-none mb-0">
               <li>
-                <a href="#!" className="text-white">
+                <Link to="/blogs" className="text-white">
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#!" className="text-white">
@@ -145,7 +137,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-        </div> */}
+        </div>
       </div>
 
       <div className=" p-4">

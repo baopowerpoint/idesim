@@ -1,6 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-function CourseContent({ payload }) {
+function CourseContent({ payload, eTitle }) {
+  const { id } = useParams();
+
   return (
     <div className="mt-5">
       <div className="bg-dark3 border border-primary  mt-5 p-3 rounded-2xl text-primary text-headline5 font-700">
@@ -11,22 +15,36 @@ function CourseContent({ payload }) {
       </div>
       {payload.sectionContent &&
         payload.sectionContent.map((lessonContent) => (
-          <div
+          <Link
             key={lessonContent.lessonId}
-            className="p-5 flex  items-center gap-5 bg-dark2 rounded-2xl border border-dark3 mt-3"
+            to={`/courses/${eTitle ? eTitle.replace(/\s+/g, "-") : undefined}/${
+              payload.sectionNumber
+            }/${lessonContent.lessonId}`}
           >
-            <p className="text-headline4 shrink-0 whitespace-nowrap w-[70px] h-[70px] rounded-full bg-dark flex items-center justify-center">
-              {lessonContent.lessonNumber < 10
-                ? `0${lessonContent.lessonNumber}`
-                : lessonContent.lessonNumber}
-            </p>
-            <div>
-              <p className="text-body font-400">{lessonContent.lessonTitle}</p>
-              <p className="text-body2 font-400 mt-2 text-med">
-                {lessonContent.lessonRunTime}
+            <div
+              className={`p-5 flex  items-center gap-5 ${
+                id == lessonContent.lessonId ? "bg-primary" : "bg-dark2"
+              } rounded-2xl border border-dark3 mt-3`}
+            >
+              <p
+                className={`text-headline4 shrink-0 whitespace-nowrap w-[70px] h-[70px] rounded-full ${
+                  id == lessonContent.lessonId ? "bg-blue-500" : "bg-dark2"
+                } flex items-center justify-center`}
+              >
+                {lessonContent.lessonNumber < 10
+                  ? `0${lessonContent.lessonNumber}`
+                  : lessonContent.lessonNumber}
               </p>
+              <div>
+                <p className="text-body font-400">
+                  {lessonContent.lessonTitle}
+                </p>
+                <p className="text-body2 font-400 mt-2 text-med">
+                  {lessonContent.lessonRunTime}
+                </p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
     </div>
   );

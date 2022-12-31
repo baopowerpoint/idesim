@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "flowbite-react";
+import { Modal } from "flowbite-react";
 import { useState } from "react";
 import DefaultButton from "../button/DefaultButton";
 

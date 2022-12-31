@@ -1,7 +1,5 @@
-import { FileInput } from "flowbite-react";
 import React from "react";
 import Button from "../Button";
-import { useAuthContext } from "../../hooks/useAuthContext";
 import { useState } from "react";
 import { useFirestore } from "../../hooks/useFirestore";
 import ToastComp from "../Toast";

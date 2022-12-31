@@ -17,6 +17,7 @@ function CourseDetail({
   tutor,
   students,
   totalTime,
+  eTitle,
 }) {
   return (
     <div className=" mt-10">
@@ -49,14 +50,11 @@ function CourseDetail({
         <p>Tổng thời lượng: {totalTime}</p>
       </div>
       <p className="my-4">{brief}</p>
-      <Link to="/learning/name/lesson">
+      <Link to={`1/1`}>
         <div className="mt-2">
           <ColoredShadow name="Học ngay" />
         </div>
       </Link>
-      <div className="mt-2">
-        <DefaultButton name="Thêm vào xem sau" />
-      </div>
     </div>
   );
 }

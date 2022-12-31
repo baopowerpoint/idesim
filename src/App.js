@@ -1,8 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import CourseDetail from "./components/course/CourseDetail";
 import Courses from "./pages/Courses";
 import Signup from "./pages/Signup";
 import LearningArea from "./pages/LearningArea";
@@ -13,25 +12,28 @@ import AdminCheck from "./pages/AdminCheck";
 import PostManaging from "./pages/admin/PostManaging";
 import Users from "./pages/admin/Users";
 import ProductManaging from "./pages/admin/ProductManaging";
-import Settings from "./pages/Settings";
 import UserCheck from "./pages/UserCheck";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useAuthContext } from "./hooks/useAuthContext";
-import { Spinner } from "flowbite-react";
+
 import { useLocation } from "react-router-dom";
 import AnimatedPage from "./components/animatePage/AnimatedPage";
 import CoursesManaging from "./pages/admin/CoursesManaging";
 import CourseInfo from "./pages/CourseInfo";
 import Post from "./pages/Post";
+import SpinnerPrimary from "./components/spinner/Spinner_primary";
+import Profile from "./pages/Profile";
+import WatchList from "./pages/WatchList";
 
 function App() {
   const location = useLocation();
+
   const { authIsReady } = useAuthContext();
   return (
-    <div className="text-light bg-dark">
+    <div className="text-light bg-dark ">
       {authIsReady && (
-        <div>
+        <div className="min-h-screen flex flex-col justify-between">
           <Navbar />{" "}
           <Routes key={location.pathname}>
             {" "}
@@ -59,7 +61,6 @@ function App() {
                 </AnimatedPage>
               }
             />
-            <Route path="/learning/:name/:id" element={<LearningArea />} />
             <Route
               path="/courses"
               element={
@@ -78,6 +79,10 @@ function App() {
               }
             />
             <Route
+              path="/courses/:eTitle/:section/:id"
+              element={<LearningArea />}
+            />
+            <Route
               path="/blogs"
               element={
                 <AnimatedPage>
@@ -94,10 +99,18 @@ function App() {
               }
             />
             <Route
-              path="/settings"
+              path="/profile"
               element={
                 <UserCheck>
-                  <Settings />
+                  <Profile />
+                </UserCheck>
+              }
+            />
+            <Route
+              path="/watch"
+              element={
+                <UserCheck>
+                  <WatchList />
                 </UserCheck>
               }
             />
@@ -146,11 +159,9 @@ function App() {
         </div>
       )}
       {!authIsReady && (
-        <Spinner
-          aria-label="Extra large spinner example"
-          className="absolute top-1/2 left-1/2 -m-5 "
-          size="xl"
-        />
+        <div className="absolute top-1/2 left-1/2 -m-5 ">
+          <SpinnerPrimary />
+        </div>
       )}
     </div>
   );

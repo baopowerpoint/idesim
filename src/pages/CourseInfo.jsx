@@ -22,7 +22,12 @@ function CourseInfo() {
   }, [courses]);
 
   return (
-    <div className=" max-w-[600px] mx-auto p-3 z-40 ">
+    <div className=" max-w-[600px] w-full mx-auto p-3 z-40 ">
+      {isPending && (
+        <div className="w-full">
+          <SkeletonWithLesson />
+        </div>
+      )}
       {course &&
         course.map((course) => (
           <div key={course.id}>
@@ -39,17 +44,16 @@ function CourseInfo() {
                 totalTime={course.totalTime}
               />
             </FadeInPage>
-            {course.courseContent.map((courseContent) => (
-              <div key={courseContent.sectionNumber}>
+            {course.courseContent.map((section) => (
+              <div key={section.sectionNumber}>
                 {" "}
                 <FadeInPage>
-                  <CourseContent payload={courseContent} />
+                  <CourseContent payload={section} eTitle={course.eTitle} />
                 </FadeInPage>
               </div>
             ))}
           </div>
         ))}
-      {isPending && <SkeletonWithLesson />}
     </div>
   );
 }

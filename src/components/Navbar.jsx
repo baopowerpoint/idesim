@@ -7,10 +7,9 @@ import AvatarComp from "./Avatar";
 import { BsFacebook } from "react-icons/bs";
 import { SiTiktok, SiZalo } from "react-icons/si";
 import { useAuthContext } from "../hooks/useAuthContext";
-import { Spinner } from "flowbite-react";
 import { AiFillInstagram, AiFillYoutube } from "react-icons/ai";
-import { AnimatePresence, motion, useCycle } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { motion, useCycle } from "framer-motion";
+import { Link } from "react-router-dom";
 import { useLogout } from "../hooks/useLogout";
 import { useEffect, useState } from "react";
 
@@ -59,9 +58,9 @@ function Navbar() {
     }
   }, [user]);
   return (
-    <div className="bg-dark  text-light3 box-border">
+    <div className="bg-dark text-light3 box-border">
       {authIsReady && (
-        <nav className="flex text-headline5 p-2 text-light3 bg-dark z-50 backdrop-blur-md bg-opacity-10 fixed top-0 left-0 right-0 items-center justify-between">
+        <nav className="flex text-headline5 p-2 text-light3 bg-dark  max-w-[1200px] mx-auto z-50 backdrop-blur-md bg-opacity-10 fixed top-0 left-0 right-0 items-center justify-between">
           <Link to="/">
             <img className="h-[20px]" src={Logo} alt="" />
           </Link>
@@ -89,12 +88,12 @@ function Navbar() {
                 <AvatarComp
                   onLogout={handleLogout}
                   displayName={user.displayName}
-                  email={user.email}
+                  uid={user.uid}
                   imgUrl={user.photoURL}
                 />
               )}
             </div>
-            <div className="flex items-center md:hidden">
+            <div className="flex  items-center md:hidden">
               <MenuToggle isOpen={isOpen} toggleOpen={toggleOpen} />
             </div>
             <motion.div

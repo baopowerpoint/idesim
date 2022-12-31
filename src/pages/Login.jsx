@@ -3,7 +3,7 @@ import { HiCheckCircle, HiXCircle } from "react-icons/hi";
 import { AiFillExclamationCircle } from "react-icons/ai";
 import SpinnerLight from "../components/spinner/SpinnerLight";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 import { Navigate } from "react-router-dom";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -19,6 +19,7 @@ function Login() {
 
   //Auth login
   const { login, error, isPending } = useLogin();
+  const location = useLocation();
   //user context
   const { user } = useAuthContext();
   const handleLogin = (e) => {
@@ -43,7 +44,12 @@ function Login() {
   }, [password]);
   return (
     <div>
-      {user && <Navigate to="/" replace={true} />}
+      {user && (
+        <Navigate
+          to={location.state ? location.state.from : "/"}
+          replace={true}
+        />
+      )}
       <div>
         <h1 className="mt-20 text-center text-headline4 font-700">Đăng Nhập</h1>
         <div className=" ">

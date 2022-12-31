@@ -62,9 +62,7 @@ function Signup() {
       setIsPasswordAvailable(false);
     }
   }, [password, repeatedPassword]);
-  useEffect(() => {
-    console.log(error);
-  }, [error]);
+
   return (
     <div>
       {user && <Navigate to="/" replace={true} />}

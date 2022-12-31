@@ -195,7 +195,8 @@ export const useFirestore = (collectionName) => {
 
       dispatch({ type: "UPDATED_DOCUMENT", payload: updatedDoc });
     } catch (error) {
-      dispatch({ type: "ERROR" });
+      console.log(error.message);
+      dispatch({ type: "ERROR", payload: error.message });
     }
   };
   const deleteDocument = async (id) => {

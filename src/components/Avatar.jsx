@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useCycle } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useCollection } from "../hooks/useCollection";
 
-function AvatarComp({ onLogout, displayName, email, imgUrl }) {
+function AvatarComp({ onLogout, displayName, uid, imgUrl }) {
   const [isOpen, toggleOpen] = useCycle(false, true);
+  const [currentUser, setCurrentUser] = useState(null);
+  const { users } = useCollection("users");
+
+  useEffect(() => {
+    if (users) {
+      const u = users.find((user) => user.uid === uid);
+      setCurrentUser(u);
+    }
+  }, [users]);
 
   return (
     <div>
@@ -25,29 +35,38 @@ function AvatarComp({ onLogout, displayName, email, imgUrl }) {
           isOpen ? "" : "hidden"
         } absolute top-0 right-0 mt-12  z-10 w-[150px]  rounded divide-y  shadow bg-dark4 divide-gray-600`}
       >
-        <div className="py-3 px-4 text-body2 text-white">
-          <div>{displayName}</div>
-          <div className="font-medium truncate">{email}</div>
-        </div>
+        <Link to="/profile">
+          <div className="cursor-pointer py-3 px-4 text-body2 text-white">
+            <div>{displayName}</div>
+          </div>
+        </Link>
         <ul
           className="py-1 text-body2 text-gray-200"
           aria-labelledby="avatarButton"
         >
           <li>
-            <a
-              href="#"
+            <Link
+              to="/carts"
               className="block py-2 px-4 hover:bg-gray-600 dark:hover:text-white"
             >
-              Mục yêu thích
-            </a>
+              Giỏ hàng
+            </Link>
           </li>
           <li>
-            <a
-              href="#"
+            <Link
+              to="/watch"
+              className="block py-2 px-4 hover:bg-gray-600 dark:hover:text-white"
+            >
+              Xem sau
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="my-courses"
               className="block py-2 px-4 hover:bg-gray-600 dark:hover:text-white"
             >
               Khóa học của tôi
-            </a>
+            </Link>
           </li>
           <li>
             <Link

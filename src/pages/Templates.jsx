@@ -1,4 +1,4 @@
-import { doc, updateDoc } from "firebase/firestore";
+import FadeInPage from "../components/animatePage/FadeInPage";
 import React from "react";
 import CardItem from "../components/card/CardItem";
 import { useCollection } from "../hooks/useCollection";
@@ -12,7 +12,7 @@ import SkeletionWithCard from "../components/skeleton/SkeletionWithCard";
 function Templates() {
   const navigate = useNavigate();
   const { user: owner } = useAuthContext();
-  const { documents: products } = useCollection("products");
+  const { documents: products, isPending } = useCollection("products");
   const { documents: users } = useCollection("users");
   const { updateDocument: userUpdateDoc, userResponse } = useFirestore("users");
   const { updateDocument: productUpdateDoc, productResponse } =
@@ -74,27 +74,30 @@ function Templates() {
       </p>
 
       <div className="flex flex-col items-center justify-center md:flex-row md:gap-5 ">
-        {!products && <SkeletionWithCard />}
+        {isPending && <SkeletionWithCard />}
 
         {products &&
           products.map((product) => (
-            <CardItem
-              key={product.id}
-              productId={product.id}
-              imgUrl={product.imgUrl}
-              price={product.price}
-              title={product.title}
-              likes={product.likes}
-              downloads={product.downloads}
-              requireLogin={() => handleNavigate()}
-              onDownload={() => {
-                handleIncrement(product.id);
-              }}
-              itemDownloadUrl={product.content}
-              onLike={() => handleItemLike(product.id)}
-              onDislike={() => handleItemDislike(product.id)}
-              userPosted="Trần Bảo"
-            />
+            <FadeInPage>
+              {" "}
+              <CardItem
+                key={product.id}
+                productId={product.id}
+                imgUrl={product.imgUrl}
+                price={product.price}
+                title={product.title}
+                likes={product.likes}
+                downloads={product.downloads}
+                requireLogin={() => handleNavigate()}
+                onDownload={() => {
+                  handleIncrement(product.id);
+                }}
+                itemDownloadUrl={product.content}
+                onLike={() => handleItemLike(product.id)}
+                onDislike={() => handleItemDislike(product.id)}
+                userPosted="Trần Bảo"
+              />
+            </FadeInPage>
           ))}
       </div>
     </div>

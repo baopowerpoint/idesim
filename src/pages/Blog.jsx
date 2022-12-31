@@ -2,6 +2,7 @@ import React from "react";
 import SelectInput from "../components/form/SelectInput";
 import SearchInput from "../components/form/SearchInput";
 import PostCard from "../components/card/PostCard";
+
 function Blog() {
   return (
     <div className=" max-w-[600px] mx-auto p-3 mt-20 z-40">

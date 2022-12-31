@@ -1,5 +1,5 @@
 import React from "react";
-import { Toast, Toggle } from "flowbite-react";
+import { Toast } from "flowbite-react";
 import { HiCheck, HiX, HiExclamation } from "react-icons/hi";
 
 function ToastComp({ message, status }) {

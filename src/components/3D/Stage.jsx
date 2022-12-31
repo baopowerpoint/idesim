@@ -95,19 +95,6 @@ function StagePr() {
           onUpdate={(self) => self.updateProjectionMatrix()}
         /> */}
 
-        {isOn && (
-          <SpotLight
-            castShadow
-            ref={light}
-            penumbra={1}
-            position={[-1.25, 2.7, 2.7]}
-            distance={12}
-            angle={1}
-            attenuation={3}
-            anglePower={1}
-            intensity={10} // Diffuse-cone anglePower (default: 5)
-          ></SpotLight>
-        )}
         <Suspense fallback={null}>
           <Stage
             adjustCamera={false}

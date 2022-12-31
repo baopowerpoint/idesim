@@ -4,6 +4,7 @@ import BadgeWithIcon from "../badge/BadgeWithIcon";
 import { useCollection } from "../../hooks/useCollection";
 import { useFirestore } from "../../hooks/useFirestore";
 import moment from "moment/moment";
+import SkeletonWithPost from "../skeleton/SkeletonWithPost";
 
 function PostCard() {
   const { updateDocument } = useFirestore("posts");
@@ -19,6 +20,12 @@ function PostCard() {
   };
   return (
     <div>
+      {isPending && (
+        <div className="mt-10">
+          <SkeletonWithPost />
+          <SkeletonWithPost />
+        </div>
+      )}
       {posts &&
         posts.map((post) => (
           <Link
